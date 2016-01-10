@@ -1,7 +1,10 @@
 {Emitter, CompositeDisposable} = require 'atom'
-getEditorState = null
 _ = require 'underscore-plus'
 
+cachedTags = null # global cache for tags
+TagGenerator = null
+
+# Utils
 requireFrom = (pack, path) ->
   packPath = atom.packages.resolvePackagePath(pack)
   require "#{packPath}/lib/#{path}"
@@ -9,14 +12,18 @@ requireFrom = (pack, path) ->
 getActivePackage = (pack) ->
   atom.packages.getActivePackage(pack)
 
-getFileView = ->
-  pack = getActivePackage('symbols-view')
-  pack.mainModule.fileView
-
 module.exports =
   activate: ->
+    cachedTags = {}
+    @subscriptions = new CompositeDisposable
+    @subscribe atom.workspace.observeTextEditors (editor) =>
+      @subscribe editor.onDidSave ->
+        delete cachedTags[editor.getPath()]
 
   deactivate: ->
+    @subscriptions.dispose()
+    @subscriptions = {}
+    cachedTags = null
 
   subscribe: (args...) ->
     @subscriptions.add args...
@@ -40,13 +47,14 @@ module.exports =
         @emitter.on 'did-generate-tags', fn
 
       getCachedTags: ->
-        getFileView().cachedTags
+        cachedTags
 
       generateTags: (fn) ->
         filePath = @editor.getPath()
         scopeName = @editor.getGrammar().scopeName
         cache = @getCachedTags()
         new TagGenerator(filePath, scopeName).generate().done (tags) ->
+          # console.log "generate for #{filePath}"
           cache[filePath] = tags
           fn(tags)
 
