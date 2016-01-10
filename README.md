@@ -1,8 +1,9 @@
-DONT USE THIS
-
 # atom-vim-mode-plus-move-to-symbols
 
-Provide symbols motion for vim-mode-plus.
+Provide symbols motion for vim-mode-plus.  
+
+Depending on TagGenerator of [symbols-view](https://github.com/atom/symbols-view).  
+But you don't have to enable `symbols-view` to use this motion.  
 
 ## keymap
 
