@@ -12,7 +12,6 @@ Motion = Base.getClass('Motion')
 state = {}
 
 class MoveToNextSymbol extends Motion
-  @extend()
   @commandPrefix: 'vim-mode-plus-user'
   direction: 'next'
   requireInput: true
@@ -63,7 +62,6 @@ class MoveToNextSymbol extends Motion
         cursor.moveToFirstCharacterOfLine()
 
 class MoveToPreviousSymbol extends MoveToNextSymbol
-  @extend()
   direction: 'prev'
 
 module.exports = {state, MoveToNextSymbol, MoveToPreviousSymbol}
