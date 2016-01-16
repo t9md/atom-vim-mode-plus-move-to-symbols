@@ -30,7 +30,7 @@ class MoveToNextSymbol extends Motion
     filePath = @editor.getPath()
     scopeName = @editor.getGrammar().scopeName
     cache = @getCachedTags()
-    new TagGenerator(filePath, scopeName).generate().done (tags) ->
+    new TagGenerator(filePath, scopeName).generate().then (tags) ->
       # console.log "generate for #{filePath}"
       cache[filePath] = tags
       fn(tags)
