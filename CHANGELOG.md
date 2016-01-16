@@ -1,4 +1,6 @@
-## 0.1.2
+## WIP
+
+## 0.1.3
 - Use `Promise::then` instead of `done`
 
 ## 0.1.1
