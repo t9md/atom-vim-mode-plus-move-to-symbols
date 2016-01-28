@@ -1,9 +1,9 @@
 # Refactoring status: 80%
 requireFrom = (pack, path) ->
   packPath = atom.packages.resolvePackagePath(pack)
-  require "#{packPath}/lib/#{path}"
+  require "#{packPath}/#{path}"
 
-{getVimState} = requireFrom 'vim-mode-plus', './spec-helper'
+{getVimState} = requireFrom 'vim-mode-plus', 'spec/spec-helper'
 
 describe "vim-mode-plus-move-to-symbols", ->
   [set, ensure, keystroke, editor, editorElement, vimState] = []
@@ -18,8 +18,9 @@ describe "vim-mode-plus-move-to-symbols", ->
     vimState.activate('reset')
 
 #
-  # describe "Copy from line above/below", ->
-  #   beforeEach ->
+  describe "Test", ->
+    it "copies from the line above", ->
+      null
   #     set
   #       text: """
   #         12345
