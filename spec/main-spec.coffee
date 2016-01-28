@@ -17,6 +17,7 @@ describe "vim-mode-plus-move-to-symbols", ->
   afterEach ->
     vimState.activate('reset')
 
+#
   # describe "Copy from line above/below", ->
   #   beforeEach ->
   #     set
