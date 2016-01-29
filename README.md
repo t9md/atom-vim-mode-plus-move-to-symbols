@@ -1,3 +1,5 @@
+![](https://travis-ci.org/t9md/atom-vim-mode-plus-move-to-symbols.svg?branch=master)
+
 # atom-vim-mode-plus-move-to-symbols
 
 Provide symbols motion for [vim-mode-plus](https://atom.io/packages/vim-mode-plus).  
