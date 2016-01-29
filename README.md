@@ -1,4 +1,4 @@
-![](https://travis-ci.org/t9md/atom-vim-mode-plus-move-to-symbols.svg?branch=master)
+[![Build Status](https://travis-ci.org/t9md/atom-vim-mode-plus-move-to-symbols.svg?branch=master)](https://travis-ci.org/t9md/atom-vim-mode-plus-move-to-symbols)
 
 # atom-vim-mode-plus-move-to-symbols
 
