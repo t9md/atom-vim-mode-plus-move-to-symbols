@@ -1,4 +1,5 @@
-## WIP
+## 0.1.4
+- Add spec, and CI
 
 ## 0.1.3
 - Use `Promise::then` instead of `done`
