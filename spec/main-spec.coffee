@@ -7,16 +7,9 @@ requireFrom = (pack, path) ->
 describe "vim-mode-plus-move-to-symbols", ->
   [set, ensure, keystroke, editor, editorElement, vimState] = []
 
-  waitsForFinishOperation = (fn) ->
-    finished = false
-    vimState.onDidFinishOperation -> finished = true
-    fn()
-    waitsFor -> finished
-
   ensureMoveToSymbols = (_keystroke, options) ->
     runs ->
-      waitsForFinishOperation ->
-        keystroke _keystroke
+      keystroke _keystroke, waitsForFinish: true
       runs ->
         ensure options
 
