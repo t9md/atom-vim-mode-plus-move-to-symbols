@@ -7,6 +7,7 @@ _ = require 'underscore-plus'
 
 TagGenerator = requireFrom 'symbols-view', 'tag-generator'
 Base = requireFrom 'vim-mode-plus', 'base'
+
 Motion = Base.getClass('Motion')
 
 state = {}
@@ -31,7 +32,6 @@ class MoveToNextSymbol extends Motion
     scopeName = @editor.getGrammar().scopeName
     cache = @getCachedTags()
     new TagGenerator(filePath, scopeName).generate().then (tags) ->
-      # console.log "generate for #{filePath}"
       cache[filePath] = tags
       fn(tags)
 
