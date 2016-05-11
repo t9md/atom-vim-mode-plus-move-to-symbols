@@ -1,3 +1,6 @@
+## 0.1.5
+- Conform vmp's new spec format.
+
 ## 0.1.4
 - Add spec, and CI
 

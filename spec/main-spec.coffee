@@ -56,11 +56,11 @@ describe "vim-mode-plus-move-to-symbols", ->
       ensureMoveToSymbols '(', cursor: [0, 0]
 
     it "support count", ->
-      ensureMoveToSymbols '3)', cursor: [5, 2]
-      ensureMoveToSymbols '2)', cursor: [8, 2]
+      ensureMoveToSymbols '3 )', cursor: [5, 2]
+      ensureMoveToSymbols '2 )', cursor: [8, 2]
 
-      ensureMoveToSymbols '3(', cursor: [3, 2]
-      ensureMoveToSymbols '2(', cursor: [0, 0]
+      ensureMoveToSymbols '3 (', cursor: [3, 2]
+      ensureMoveToSymbols '2 (', cursor: [0, 0]
 
   describe "github markdown editor", ->
     pack = 'language-gfm'
