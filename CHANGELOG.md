@@ -1,3 +1,6 @@
+## 0.1.6
+- Minor update, no behavior change.
+
 ## 0.1.5
 - Conform vmp's new spec format.
 

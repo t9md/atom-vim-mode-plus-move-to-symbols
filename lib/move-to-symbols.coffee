@@ -5,8 +5,8 @@ requireFrom = (pack, path) ->
 {Emitter, Point} = require 'atom'
 _ = require 'underscore-plus'
 
-TagGenerator = requireFrom 'symbols-view', 'tag-generator'
-Base = requireFrom 'vim-mode-plus', 'base'
+TagGenerator = requireFrom('symbols-view', 'tag-generator')
+Base = requireFrom('vim-mode-plus', 'base')
 
 Motion = Base.getClass('Motion')
 
