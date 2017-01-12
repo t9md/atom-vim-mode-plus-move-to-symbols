@@ -1,3 +1,6 @@
+## 0.2.0
+- Update to work with latest vim-mode-plus
+
 ## 0.1.6
 - Minor update, no behavior change.
 
