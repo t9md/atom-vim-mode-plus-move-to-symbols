@@ -23,9 +23,6 @@ class MoveToNextSymbol extends Motion
   onDidGenerateTags: (fn) ->
     @emitter.on 'did-generate-tags', fn
 
-  getCachedTags: ->
-    state.cachedTags
-
   getTags: ->
     filePath = @editor.getPath()
     tags = cachedTag[filePath]?.slice()
