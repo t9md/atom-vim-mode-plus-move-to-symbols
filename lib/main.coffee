@@ -1,22 +1,25 @@
 {CompositeDisposable} = require 'atom'
 
 module.exports =
+  registries: null
   activate: ->
     @subscriptions = new CompositeDisposable
 
   deactivate: ->
     @subscriptions.dispose()
-    [@subscriptions, cachedTag] = []
+    @registries?.cachedTag = null
+    [@subscriptions, @registries] = []
 
-  subscribe: (args...) ->
-    @subscriptions.add args...
+  consumeVim: ({registerCommandFromSpec}) ->
+    getClass = (name) =>
+      @registries ?= require "./move-to-symbols"
+      @registries[name]
 
-  consumeVim: ({Base}) ->
-    {cachedTag, MoveToNextSymbol, MoveToPreviousSymbol} = require "./move-to-symbols"
-    @subscribe(
-      MoveToNextSymbol.registerCommand()
-      MoveToPreviousSymbol.registerCommand()
+    commandPrefix = 'vim-mode-plus-user'
+    @subscriptions.add(
+      registerCommandFromSpec({name: 'MoveToNextSymbol', commandPrefix, getClass})
+      registerCommandFromSpec({name: 'MoveToPreviousSymbol', commandPrefix, getClass})
     )
-    @subscribe atom.workspace.observeTextEditors (editor) =>
-      @subscribe editor.onDidSave ->
-        delete cachedTag[editor.getPath()]
+    @subscriptions.add atom.workspace.observeTextEditors (editor) =>
+      @subscriptions.add editor.onDidSave =>
+        delete @registries?.cachedTag[editor.getPath()]

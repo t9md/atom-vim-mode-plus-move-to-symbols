@@ -12,7 +12,6 @@ Motion = Base.getClass('Motion')
 cachedTag = {}
 
 class MoveToNextSymbol extends Motion
-  @commandPrefix: 'vim-mode-plus-user'
   direction: 'next'
   requireInput: true
 
