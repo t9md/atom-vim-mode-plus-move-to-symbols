@@ -17,8 +17,8 @@ module.exports =
 
     commandPrefix = 'vim-mode-plus-user'
     @subscriptions.add(
-      registerCommandFromSpec({name: 'MoveToNextSymbol', commandPrefix, getClass})
-      registerCommandFromSpec({name: 'MoveToPreviousSymbol', commandPrefix, getClass})
+      registerCommandFromSpec('MoveToNextSymbol', {commandPrefix, getClass})
+      registerCommandFromSpec('MoveToPreviousSymbol', {commandPrefix, getClass})
     )
     @subscriptions.add atom.workspace.observeTextEditors (editor) =>
       @subscriptions.add editor.onDidSave =>
