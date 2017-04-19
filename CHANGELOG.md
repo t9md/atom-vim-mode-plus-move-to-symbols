@@ -1,3 +1,6 @@
+## 0.3.0
+- Use `activationCommands` to reduce startup time of atom.
+
 ## 0.2.0
 - Update to work with latest vim-mode-plus
 
