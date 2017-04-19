@@ -5,6 +5,12 @@
   "description": "Motion for move-to-symbols",
   "repository": "https://github.com/t9md/atom-vim-mode-plus-move-to-symbols",
   "license": "MIT",
+  "activationCommands": {
+    "atom-text-editor": [
+      "vim-mode-plus-user:move-to-next-symbol",
+      "vim-mode-plus-user:move-to-previous-symbol"
+    ]
+  },
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
   },

@@ -4,6 +4,11 @@ requireFrom = (pack, path) ->
 
 {getVimState} = requireFrom 'vim-mode-plus', 'spec/spec-helper'
 
+activatePackageByActivationCommand = (name, fn) ->
+  activationPromise = atom.packages.activatePackage(name)
+  fn()
+  activationPromise
+
 describe "vim-mode-plus-move-to-symbols", ->
   [set, ensure, keystroke, editor, editorElement, vimState] = []
 
@@ -21,7 +26,9 @@ describe "vim-mode-plus-move-to-symbols", ->
       , 101
 
     waitsForPromise ->
-      atom.packages.activatePackage('vim-mode-plus-move-to-symbols')
+      activatePackageByActivationCommand 'vim-mode-plus-move-to-symbols', ->
+        atom.workspace.open().then (editor) ->
+          atom.commands.dispatch(editor.element, 'vim-mode-plus-user:move-to-previous-symbol')
 
   describe "coffee editor", ->
     pack = 'language-coffee-script'
