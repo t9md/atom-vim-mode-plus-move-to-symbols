@@ -1,3 +1,6 @@
+## 0.4.0: WIP
+- Convert CoffeeScript to JavaScript
+
 ## 0.3.0
 - Use `activationCommands` to reduce startup time of atom.
 
