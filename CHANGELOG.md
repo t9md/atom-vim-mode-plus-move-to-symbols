@@ -1,5 +1,7 @@
-## 0.4.0: WIP
-- Convert CoffeeScript to JavaScript
+## 0.4.0:
+- Maintenance:
+  - Convert Coffee-to-JS
+  - Also make vmp commands compatible with upcoming ES6-class-based-vmp-operations.
 
 ## 0.3.0
 - Use `activationCommands` to reduce startup time of atom.
