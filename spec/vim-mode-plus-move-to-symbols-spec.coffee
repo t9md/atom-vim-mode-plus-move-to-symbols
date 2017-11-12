@@ -10,14 +10,7 @@ activatePackageByActivationCommand = (name, fn) ->
   activationPromise
 
 describe "vim-mode-plus-move-to-symbols", ->
-  [set, ensure, keystroke, editor, editorElement, vimState] = []
-
-  ensureMoveToSymbols = (_keystroke, options) ->
-    runs ->
-      keystroke _keystroke, waitsForFinish: true
-      runs ->
-        ensure options
-
+  [set, ensure, ensureWait, editor, editorElement, vimState] = []
   beforeEach ->
     atom.keymaps.add "test",
       'atom-text-editor.vim-mode-plus:not(.insert-mode)':
@@ -39,7 +32,7 @@ describe "vim-mode-plus-move-to-symbols", ->
       getVimState 'sample.coffee', (state, vim) ->
         vimState = state
         {editor, editorElement} = state
-        {set, ensure, keystroke} = vim
+        {set, ensure, ensureWait} = vim
 
       waitsForPromise ->
         atom.packages.activatePackage('vim-mode-plus-move-to-symbols')
@@ -51,24 +44,24 @@ describe "vim-mode-plus-move-to-symbols", ->
       atom.packages.deactivatePackage(pack)
 
     it "move next and previous symbols", ->
-      ensureMoveToSymbols ')', cursor: [1, 2]
-      ensureMoveToSymbols ')', cursor: [3, 2]
-      ensureMoveToSymbols ')', cursor: [5, 2]
-      ensureMoveToSymbols ')', cursor: [7, 0]
-      ensureMoveToSymbols ')', cursor: [8, 2]
+      ensureWait ')', cursor: [1, 2]
+      ensureWait ')', cursor: [3, 2]
+      ensureWait ')', cursor: [5, 2]
+      ensureWait ')', cursor: [7, 0]
+      ensureWait ')', cursor: [8, 2]
 
-      ensureMoveToSymbols '(', cursor: [7, 0]
-      ensureMoveToSymbols '(', cursor: [5, 2]
-      ensureMoveToSymbols '(', cursor: [3, 2]
-      ensureMoveToSymbols '(', cursor: [1, 2]
-      ensureMoveToSymbols '(', cursor: [0, 0]
+      ensureWait '(', cursor: [7, 0]
+      ensureWait '(', cursor: [5, 2]
+      ensureWait '(', cursor: [3, 2]
+      ensureWait '(', cursor: [1, 2]
+      ensureWait '(', cursor: [0, 0]
 
     it "support count", ->
-      ensureMoveToSymbols '3 )', cursor: [5, 2]
-      ensureMoveToSymbols '2 )', cursor: [8, 2]
+      ensureWait '3 )', cursor: [5, 2]
+      ensureWait '2 )', cursor: [8, 2]
 
-      ensureMoveToSymbols '3 (', cursor: [3, 2]
-      ensureMoveToSymbols '2 (', cursor: [0, 0]
+      ensureWait '3 (', cursor: [3, 2]
+      ensureWait '2 (', cursor: [0, 0]
 
   describe "github markdown editor", ->
     pack = 'language-gfm'
@@ -79,7 +72,7 @@ describe "vim-mode-plus-move-to-symbols", ->
       getVimState 'sample.md', (state, vim) ->
         vimState = state
         {editor, editorElement} = state
-        {set, ensure, keystroke} = vim
+        {set, ensure, ensureWait} = vim
 
       runs ->
         set cursor: [0, 0]
@@ -88,16 +81,16 @@ describe "vim-mode-plus-move-to-symbols", ->
       atom.packages.deactivatePackage(pack)
 
     it "move next and previous symbols", ->
-      ensureMoveToSymbols ')', cursor: [2, 0]
-      ensureMoveToSymbols ')', cursor: [4, 0]
-      ensureMoveToSymbols ')', cursor: [5, 0]
-      ensureMoveToSymbols ')', cursor: [7, 0]
-      ensureMoveToSymbols ')', cursor: [9, 0]
-      ensureMoveToSymbols ')', cursor: [10, 0]
+      ensureWait ')', cursor: [2, 0]
+      ensureWait ')', cursor: [4, 0]
+      ensureWait ')', cursor: [5, 0]
+      ensureWait ')', cursor: [7, 0]
+      ensureWait ')', cursor: [9, 0]
+      ensureWait ')', cursor: [10, 0]
 
-      ensureMoveToSymbols '(', cursor: [9, 0]
-      ensureMoveToSymbols '(', cursor: [7, 0]
-      ensureMoveToSymbols '(', cursor: [5, 0]
-      ensureMoveToSymbols '(', cursor: [4, 0]
-      ensureMoveToSymbols '(', cursor: [2, 0]
-      ensureMoveToSymbols '(', cursor: [0, 0]
+      ensureWait '(', cursor: [9, 0]
+      ensureWait '(', cursor: [7, 0]
+      ensureWait '(', cursor: [5, 0]
+      ensureWait '(', cursor: [4, 0]
+      ensureWait '(', cursor: [2, 0]
+      ensureWait '(', cursor: [0, 0]
